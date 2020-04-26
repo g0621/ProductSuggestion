@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Product suggestion</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="/static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
+          type="text/css">
+
+    <!-- Plugin CSS -->
+    <link href="/static/vendor/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css">
+
+    <!-- Custom styles for this template -->
+    <link href="/static/css/freelancer.min.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="mainNav">
+    <div class="container text-center">
+        <a class="navbar-brand js-scroll-trigger text-center" style="width:100%" href="#page-top">Product suggestion</a>
+    </div>
+</nav>
+
+<!-- Header -->
+<header class="masthead bg-primary text-white text-center">
+    <div class="container">
+        <img class="img-fluid mb-5 d-block mx-auto" src="/static/img/profile.png" alt="">
+        <h1 class="text-uppercase mb-0">Product Suggester</h1>
+        <hr class="star-light">
+        <br><br>
+        <h2 class="font-weight-light mb-0">Please select any one of the image below to enlarge and get suggestions</h2>
+    </div>
+</header>
+
+<!-- Portfolio Grid Section -->
+<section class="portfolio" id="portfolio">
+    <div class="container">
+        <h2 class="text-center text-uppercase text-secondary mb-0">Random Products</h2>
+        <hr class="star-dark mb-5">
+        <div class="row">
+            {%for i in range(0, len)%}
+            <div class="col-md-6 col-lg-4">
+                <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-{{items[i][4]}}">
+                    <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
+                        <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
+                            <i class="fas fa-search-plus fa-3x"></i>
+                        </div>
+                    </div>
+                    <img style="display: block;margin:auto; " class="img-fluid" src="{{items[i][0]}}" alt="">
+                </a>
+            </div>
+            {%endfor%}
+        </div>
+    </div>
+</section>
+<br>
+<div class="container" style="margin: 0 auto; width: 100%;text-align: center">
+    <form method="post" action="/reset">
+                        <input type="hidden" name="pid" value="reset"/>
+                        <input class="btn btn-outline-success btn-lg rounded-pill" type="submit"
+                               value="Reset Products">
+                    </form>
+</div>
+<br>
+{% if to_show == True %}
+<div style="background: #18bc9c;width: 100% ">
+    <br>
+    <h2 class="text-center text-uppercase text-secondary mb-0">Products Suggestions</h2>
+    <hr class="star-light mb-5">
+    <br>
+</div>
+<section class="portfolio" id="portfolio1">
+    <div class="container">
+        <div class="row">
+            {%for i in range(0, len1)%}
+            <div class="col-md-6 col-lg-4">
+                <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-{{res[i][4]}}">
+                    <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
+                        <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
+                            <i class="fas fa-search-plus fa-3x"></i>
+                        </div>
+                    </div>
+                    <img style="display: block;margin:auto; " class="img-fluid" src="{{res[i][0]}}" alt="">
+                </a>
+            </div>
+            {%endfor%}
+        </div>
+    </div>
+</section>
+{%endif%}
+<!-- About Section -->
+<section class="bg-primary text-white mb-0" id="about">
+    <div class="container">
+        <h2 class="text-center text-uppercase text-white">About</h2>
+        <hr class="star-light mb-5">
+        <div class="row">
+            <div class="col-lg-4 ml-auto">
+                <p class="lead">This site is a e-commerce site created for demonstrating apparel recommendation . The site includes
+                    the complete source files including HTML, CSS, and JavaScript for easy customization.</p>
+            </div>
+            <div class="col-lg-4 mr-auto">
+                <p class="lead">In the site, our only focus is to recommend six apparel which is best suited for the selected cloth among the six random cloth. </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<div class="copyright py-4 text-center text-white">
+    <div class="container">
+        <small>Copyright &copy; Your Website 2019</small>
+    </div>
+</div>
+
+<!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+<div class="scroll-to-top d-lg-none position-fixed ">
+    <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</div>
+
+<!-- Portfolio Modals -->
+
+<!-- 0-url ,, 1 - title ,, 2 desc ,, 3 pysa ,, 4 id -->
+<!-- Portfolio Modal 1 -->
+{%for i in range(0, len)%}
+<div class="portfolio-modal mfp-hide" id="portfolio-modal-{{items[i][4]}}">
+    <div class="portfolio-modal-dialog bg-white">
+        <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">
+            <i class="fa fa-3x fa-times"></i>
+        </a>
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <h2 class="text-secondary text-uppercase mb-0">{{items[i][1]}}</h2>
+                    <hr class="star-dark mb-5">
+                    <img class="img-fluid mb-5" style="display: block;margin: auto" src="{{items[i][0]}}" alt="">
+                    <p class="mb-5">{{items[i][2]}}</p>
+                    <h3 class="mb-3">{{items[i][3]}}</h3>
+                    <form method="post" action="/send">
+                        <input type="hidden" name="pid" value="{{items[i][4]}}"/>
+                        <input class="btn btn-outline-success btn-lg rounded-pill" type="submit"
+                               value="Get Recommendation">
+                    </form>
+                    <br>
+                    <a class="btn btn-danger btn-lg rounded-pill portfolio-modal-dismiss" href="#">
+                        <i class="fa fa-close"></i>
+                        Close Product</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{%endfor%}
+
+{% if to_show == True %}
+{%for i in range(0, len1)%}
+<div class="portfolio-modal mfp-hide" id="portfolio-modal-{{res[i][4]}}">
+    <div class="portfolio-modal-dialog bg-white">
+        <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">
+            <i class="fa fa-3x fa-times"></i>
+        </a>
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <h2 class="text-secondary text-uppercase mb-0">{{res[i][1]}}</h2>
+                    <hr class="star-dark mb-5">
+                    <img class="img-fluid mb-5" style="display: block;margin: auto" src="{{res[i][0]}}" alt="">
+                    <p class="mb-5">{{res[i][2]}}</p>
+                    <h3 class="mb-3">{{res[i][3]}}</h3>
+                    <a class="btn btn-danger btn-lg rounded-pill portfolio-modal-dismiss" href="#">
+                        <i class="fa fa-close"></i>
+                        Close Product</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{%endfor%}
+{%endif%}
+
+<!-- Bootstrap core JavaScript -->
+<script src="/static/vendor/jquery/jquery.min.js"></script>
+<script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="/static/vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="/static/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+<!-- Contact Form JavaScript -->
+<script src="/static/js/jqBootstrapValidation.js"></script>
+<script src="/static/js/contact_me.js"></script>
+
+<!-- Custom scripts for this template -->
+<script src="/static/js/freelancer.min.js"></script>
+
+</body>
+
+</html>
